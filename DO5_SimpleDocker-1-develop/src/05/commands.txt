@@ -1,0 +1,5 @@
+gcc -o server server.c -lfcgi -arch x86_64
+spawn-fcgi -p 8080 -n ./server
+nginx -c /Users/ibragim/Desktop/21school21/DO5_SimpleDocker-0/src/03/nginx.conf
+docker build -t my-nginx-server .
+docker run -d -p 81:80 -v $(pwd)/nginx:/etc/nginx -p 8080:8080 my-nginx-server
